@@ -31,16 +31,14 @@ class ContactsTableViewController: UITableViewController, AddContactDelegate {
     }
     
     @IBAction func add_contact(_ sender: Any) {
-        performSegue(withIdentifier: "toAdd", sender: self)
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // TODO: How many sections? (Hint: we have 1 section and x rows)
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // TODO: How many rows in our section?
         return contactList.count
     }
     
@@ -73,6 +71,14 @@ class ContactsTableViewController: UITableViewController, AddContactDelegate {
                     return
             }
             DVC.contact = contactList[index]
+        } else if segue.identifier == "toAdd"{
+            guard let AVC = segue.destination as? UINavigationController,
+                  let ACVC = AVC.topViewController as?
+                    AddContactViewController
+                else{
+                    return
+            }
+            ACVC.delegate = self
         }
     }
 
