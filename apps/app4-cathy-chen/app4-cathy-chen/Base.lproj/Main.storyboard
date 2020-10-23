@@ -91,12 +91,12 @@
                     <navigationItem key="navigationItem" title="Add Contact" id="Z3Z-rT-I87">
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="KFf-i2-cAq">
                             <connections>
-                                <action selector="save:" destination="BYZ-38-t0r" id="E78-qo-yMU"/>
+                                <action selector="cancel:" destination="BYZ-38-t0r" id="oiB-Oe-cPF"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="c98-lx-b9m">
                             <connections>
-                                <action selector="cancel:" destination="BYZ-38-t0r" id="RCL-UH-e5Q"/>
+                                <action selector="save:" destination="BYZ-38-t0r" id="h5C-pK-I4m"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -147,7 +147,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Xhl-IL-jW7" kind="show" identifier="toDetail" id="hWG-QW-XbF"/>
+                                    <segue destination="Xhl-IL-jW7" kind="show" identifier="toDetail" id="vlD-PU-VUy"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -160,7 +160,7 @@
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="Rpx-kR-mIK">
                             <connections>
                                 <action selector="add_contact:" destination="aOZ-Rj-XJR" id="0Bk-v7-SE5"/>
-                                <segue destination="E9b-gI-Y1M" kind="modal" identifier="toAdd" modalPresentationStyle="fullScreen" id="c32-la-Dzn"/>
+                                <segue destination="E9b-gI-Y1M" kind="presentation" identifier="toAdd" modalPresentationStyle="fullScreen" id="c32-la-Dzn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -187,11 +187,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rbq-QT-P69">
-                                <rect key="frame" x="91" y="150.5" width="232" height="155"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" systemColor="secondaryLabelColor"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rb7-jv-Rxu">
                                 <rect key="frame" x="203" y="314" width="85" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -241,9 +236,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rbq-QT-P69">
+                                <rect key="frame" x="144" y="150.5" width="126" height="155"/>
+                                <color key="tintColor" systemColor="secondaryLabelColor"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wCI-19-ZBB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="rbq-QT-P69" firstAttribute="centerX" secondItem="B79-A7-nFx" secondAttribute="centerX" id="2Qb-JZ-9pp"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="4Ed-SF-z40"/>
                     <connections>

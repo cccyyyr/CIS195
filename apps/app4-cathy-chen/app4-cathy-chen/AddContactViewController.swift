@@ -33,18 +33,21 @@ class AddContactViewController: UIViewController {
     }
 
 
+    @IBAction func cancel(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     @IBAction func save(_ sender: Any) {
         let newContact = createContact()
         if createContact() != nil{
             self.delegate?.didCreate(newContact!)
         }
-    }
-    @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     func createContact() -> Contact?{
+        print("hi")
         if (firstName.hasText) && (lastName.hasText) &&
             (company.hasText) && (email.hasText) && (phoneNum.hasText){
+            print("yr")
             return Contact(firstName: firstName.text!, lastName: lastName.text!, company: company.text!, email: email.text!, phoneNum: phoneNum.text!)
         }
         else{
