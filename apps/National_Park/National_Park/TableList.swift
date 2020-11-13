@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import Firebase
 
 struct Img: Codable {
     var credit: String?
@@ -61,25 +62,46 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchParks()
+        loadDb()
+        
     }
-    
+    let db = Firestore.firestore()
+    private func loadDb(){
+        let rand = String(1)
+        db.collection("users").document(rand).setData([
+                    "name": rand
+                ]) { err in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Document successfully written!")
+                        let docRef = self.db.collection("users").document(rand)
+                        docRef.getDocument { (document, error) in
+                            if let document = document, document.exists {
+                                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                                print("Document data: \(dataDescription)")
+                            } else {
+                                print("Document does not exist")
+                            }
+                        }
+                    }
+                }
+    }
     private func fetchParks() {
         let urlString = "https://developer.nps.gov/api/v1/parks?limit=30&api_key=Yq1Cl4tGpBXRtkTvw7lcMFlzxbuitecpg1ew3ksm"
         guard let url = URL(string: urlString) else { return }
         print("here")
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data {
-                print("fetching")
-                if let decodedData = try? JSONDecoder().decode(OG.self, from: data) {
-                    self.parks = decodedData.data
-                    print("fetched")
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                    //TO DO: loading sign
-                }else{
-                    print("failed with decode")
-                }
+//                if let decodedData = try? JSONDecoder().decode(OG.self, from: data) {
+//                    self.parks = decodedData.data
+//                    DispatchQueue.main.async {
+//                        self.tableView.reloadData()
+//                    }
+//
+//                }else{
+//                    print("failed with decode")
+//                }
             }
         }
         
