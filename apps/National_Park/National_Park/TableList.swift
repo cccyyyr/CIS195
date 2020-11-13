@@ -61,40 +61,78 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchParks()
-        loadDb()
-        
+        self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
+//      I commented out because it's already in the database
+//        loadData()
+        fetchDb()
+    }
+    @objc func refresh(sender:AnyObject)
+    {
+        fetchDb()
+        self.refreshControl?.endRefreshing()
     }
     let db = Firestore.firestore()
-    private func loadDb(){
-        let rand = String(1)
-        db.collection("users").document(rand).setData([
-                    "name": rand
-                ]) { err in
-                    if let err = err {
-                        print("Error writing document: \(err)")
-                    } else {
-                        print("Document successfully written!")
-                        let docRef = self.db.collection("users").document(rand)
-                        docRef.getDocument { (document, error) in
-                            if let document = document, document.exists {
-                                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                                print("Document data: \(dataDescription)")
-                            } else {
-                                print("Document does not exist")
-                            }
-                        }
+    private func fetchDb(){
+        for i in 0...29 {
+            let docRef = self.db.collection("parks").document("\(i)")
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    var curr_image: [Img] = []
+                    if let imgUrl = document.get("image") as? String{
+                        let img = Img(credit: nil, altText: nil, title: nil, caption: nil, url: imgUrl)
+                        curr_image = [img]
                     }
+                    let name = document.get("name") as! String
+                    let descri = document.get("description") as! String
+                    let desg = document.get("designation") as! String
+                    let p = Park(activities: nil, addresses: nil, contacts: nil, description: descri, designation: desg, directionalUrl: nil, entranceFees: nil, entrancePasses: nil, fullName: nil, id: nil, images: curr_image, latLong: nil, latitude: nil, longitude: nil, name: name, operatingHours: nil, parkCode: nil, states: nil, topics: nil, url: nil, weatherInfo: nil)
+                    self.parks.append(p)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                } else {
+                    print("can't find document \(i)")
                 }
+            }
+        }
+       
     }
-    private func fetchParks() {
+        
+    private func loadData() {
         let urlString = "https://developer.nps.gov/api/v1/parks?limit=30&api_key=Yq1Cl4tGpBXRtkTvw7lcMFlzxbuitecpg1ew3ksm"
         guard let url = URL(string: urlString) else { return }
         print("here")
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let data = data {
+            guard let data = data,
+                      error == nil else {
+                      print(error?.localizedDescription ?? "Response Error")
+                      return }
+            do{
+                let jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                var curr = 0
+                let jsonArray = jsonResponse["data"] as! [[String: Any]]
+                    for p in jsonArray{
+                        let simplified:NSMutableDictionary = ["dummy": 1]
+                        simplified["name"] = p["name"]
+                        guard let allImage = p["images"] as? [[String: Any]] else {return}
+                        if allImage.count > 0{
+                            simplified["image"]=allImage[0]["url"]
+                        } else {
+                            simplified["image"]=nil
+                        }
+                        simplified["designation"] = p["designation"]
+                        simplified["description"] = p["description"]
+                        self.db.collection("parks").document("\(curr)").setData(simplified as! [String : Any])
+                        curr += 1
+                    }
+            } catch let parsingError {
+                    print("Error", parsingError)
+            }
+        }
+        task.resume()
 //                if let decodedData = try? JSONDecoder().decode(OG.self, from: data) {
 //                    self.parks = decodedData.data
+//
 //                    DispatchQueue.main.async {
 //                        self.tableView.reloadData()
 //                    }
@@ -102,11 +140,8 @@ class TableViewController: UITableViewController {
 //                }else{
 //                    print("failed with decode")
 //                }
-            }
         }
-        
-        task.resume()
-    }
+            
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -79,6 +79,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="National Parks" id="t7K-Uv-tWM"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="KZ0-lH-Vve">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x12-LY-2fN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -118,13 +121,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFQ-o4-SkE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="50" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFQ-o4-SkE">
                                 <rect key="frame" x="20" y="484" width="374" height="348"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="OFQ-o4-SkE" secondAttribute="height" multiplier="187:174" id="Ri7-DR-qTk"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <mutableString key="content">fkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervegsefkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgberveiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervegsefkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgberveiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervegsefkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgberveiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervfkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervegsefkwehfeowihgoiwehfeiowghejkwbvjkbvesjbvjewkbve ksjvbejkwgbervdgdg</mutableString>
+                                        <attributes>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
