@@ -1,0 +1,6 @@
+framework module Pods_National_Park {
+  umbrella header "Pods-National_Park-umbrella.h"
+
+  export *
+  module * { export * }
+}

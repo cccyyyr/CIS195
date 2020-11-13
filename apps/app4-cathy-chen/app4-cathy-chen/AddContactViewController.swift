@@ -44,10 +44,8 @@ class AddContactViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     func createContact() -> Contact?{
-        print("hi")
         if (firstName.hasText) && (lastName.hasText) &&
             (company.hasText) && (email.hasText) && (phoneNum.hasText){
-            print("yr")
             return Contact(firstName: firstName.text!, lastName: lastName.text!, company: company.text!, email: email.text!, phoneNum: phoneNum.text!)
         }
         else{
